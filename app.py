@@ -41,17 +41,23 @@ DISCLAIMER_TEXT = (
 
 EMERGENCY_KEYWORDS = {
     "chest pain",
+    "heart attack",
     "trouble breathing",
     "can't breathe",
     "cannot breathe",
+    "not breathing",
+    "blue lips",
     "shortness of breath",
     "suicidal",
+    "suicidal thoughts",
     "suicide",
     "kill myself",
     "hurt myself",
     "harm myself",
     "overdose",
+    "poisoned",
     "severe bleeding",
+    "can't stop bleeding",
     "bleeding heavily",
     "fainted",
     "fainting",
@@ -114,12 +120,14 @@ def detect_emergency(message: str) -> bool:
 
 def emergency_response() -> str:
     return (
-        "Your message may describe something urgent. Please seek immediate help from a "
-        "doctor, urgent care, or emergency services right now, especially if you have "
-        "chest pain, trouble breathing, severe bleeding, fainting, signs of overdose, "
-        "or feel at risk of harming yourself.\n\n"
+        "This may be urgent. Please stop using the app for advice and seek immediate "
+        "real-world help right now.\n\n"
+        "Call local emergency services now if you have severe symptoms such as chest pain, "
+        "trouble breathing, severe bleeding, fainting, signs of stroke, seizure, overdose, "
+        "or rapidly worsening symptoms.\n\n"
         "If you may act on suicidal thoughts or feel unsafe, call or text 988 in the "
-        "United States now, or contact local emergency services immediately.\n\n"
+        "United States now, ask someone nearby to stay with you, or contact local emergency "
+        "services immediately.\n\n"
         f"{DISCLAIMER_TEXT}"
     )
 

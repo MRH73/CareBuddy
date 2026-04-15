@@ -44,6 +44,16 @@
             CareBuddy will ask about your symptoms before giving guidance.
           </div>
 
+          <section id="urgentPanel" class="urgent-panel hidden" aria-live="assertive">
+            <p class="section-label">Urgent support</p>
+            <h3>Seek immediate real-world help now.</h3>
+            <ul>
+              <li>Call local emergency services if symptoms feel severe or dangerous.</li>
+              <li>In the United States, call or text 988 for suicide or mental health crisis support.</li>
+              <li>Go to urgent care or the nearest emergency department if you feel unsafe waiting.</li>
+            </ul>
+          </section>
+
           <div id="chatMessages" class="chat-messages" aria-live="polite">
             <article class="message assistant">
               <p>
@@ -82,14 +92,112 @@
             </ul>
           </div>
 
-          <div class="support-block warning">
-            <p class="section-label">Get urgent help now if you have</p>
-            <ul>
-              <li>Chest pain or trouble breathing</li>
-              <li>Severe bleeding, fainting, or signs of overdose</li>
-              <li>Thoughts of suicide or harming yourself</li>
-            </ul>
-          </div>
+          <section class="support-block mood-block">
+            <div class="mood-block-header">
+              <div>
+                <p class="section-label">Mood check-in</p>
+                <h3>Track how you’re doing in this browser only.</h3>
+              </div>
+              <p class="mood-note">No account and no database required.</p>
+            </div>
+
+            <form id="moodForm" class="mood-form">
+              <div class="mood-chip-group" aria-label="Choose a mood">
+                <button class="mood-chip is-active" type="button" data-mood="calm">Calm</button>
+                <button class="mood-chip" type="button" data-mood="okay">Okay</button>
+                <button class="mood-chip" type="button" data-mood="stressed">Stressed</button>
+                <button class="mood-chip" type="button" data-mood="sad">Sad</button>
+                <button class="mood-chip" type="button" data-mood="anxious">Anxious</button>
+                <button class="mood-chip" type="button" data-mood="overwhelmed">Overwhelmed</button>
+              </div>
+
+              <label class="mood-field">
+                <span>Mood</span>
+                <select id="moodSelect">
+                  <option value="calm">Calm</option>
+                  <option value="okay">Okay</option>
+                  <option value="stressed">Stressed</option>
+                  <option value="sad">Sad</option>
+                  <option value="anxious">Anxious</option>
+                  <option value="overwhelmed">Overwhelmed</option>
+                </select>
+              </label>
+
+              <label class="mood-field">
+                <span>Stress level</span>
+                <input id="stressRange" type="range" min="1" max="10" value="4" />
+              </label>
+
+              <label class="mood-field">
+                <span>Energy level</span>
+                <input id="energyRange" type="range" min="1" max="10" value="5" />
+              </label>
+
+              <label class="mood-field">
+                <span>Sleep last night</span>
+                <select id="sleepSelect">
+                  <option value="good">Good</option>
+                  <option value="okay">Okay</option>
+                  <option value="poor">Poor</option>
+                  <option value="very poor">Very poor</option>
+                </select>
+              </label>
+
+              <label class="mood-field">
+                <span>Optional note</span>
+                <textarea
+                  id="moodNote"
+                  rows="3"
+                  maxlength="240"
+                  placeholder="Example: I feel tense, tired, and mentally overloaded today."
+                ></textarea>
+              </label>
+
+              <div class="mood-actions">
+                <button class="ghost-button" type="submit">Save check-in</button>
+                <button id="useMoodInChat" class="primary-button" type="button">Use in chat</button>
+              </div>
+            </form>
+
+            <section class="today-card">
+              <div class="today-card-header">
+                <div>
+                  <p class="section-label">Today at a glance</p>
+                  <h4 id="todayMoodHeading">No check-in saved yet</h4>
+                </div>
+                <p id="todayMoodTime" class="today-time">Stored only in this browser</p>
+              </div>
+
+              <div class="today-metrics">
+                <div class="today-metric">
+                  <span class="metric-label">Stress</span>
+                  <strong id="todayStressValue">-</strong>
+                </div>
+                <div class="today-metric">
+                  <span class="metric-label">Energy</span>
+                  <strong id="todayEnergyValue">-</strong>
+                </div>
+                <div class="today-metric">
+                  <span class="metric-label">Sleep</span>
+                  <strong id="todaySleepValue">-</strong>
+                </div>
+              </div>
+
+              <div id="moodSummary" class="mood-summary">
+                No check-in saved yet for this browser session.
+              </div>
+            </section>
+
+            <section class="history-strip">
+              <div class="history-strip-header">
+                <p class="section-label">Recent check-ins</p>
+                <p class="history-note">Local to this browser</p>
+              </div>
+              <div id="historyTrack" class="history-track">
+                <div class="history-empty">Your recent mood check-ins will appear here.</div>
+              </div>
+            </section>
+          </section>
         </div>
       </section>
     </main>

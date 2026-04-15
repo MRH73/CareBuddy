@@ -1,6 +1,6 @@
 # CareBuddy
 
-CareBuddy is a Flask-based wellness assistant with a soft, minimal web interface. It offers general symptom and emotional wellness guidance, asks follow-up questions before giving suggestions, stores conversation context in the browser session, and shows strong medical disclaimers throughout the experience.
+CareBuddy is a Flask-based wellness assistant with a soft, calm web interface. It offers general symptom and emotional wellness guidance, asks follow-up questions before giving suggestions, stores conversation context in the browser session, and shows strong medical disclaimers throughout the experience.
 
 ## Features
 
@@ -8,7 +8,10 @@ CareBuddy is a Flask-based wellness assistant with a soft, minimal web interface
 - Friendly, neutral UI with visible safety messaging
 - Flask API connected to OpenAI
 - Browser-session chat memory with no database required
+- Mood check-in section on the same page with browser-only storage
+- Local mood history strip and a "today" summary card
 - Emergency keyword detection for urgent medical or crisis language
+- Strong emergency visual feedback inside the main chat experience
 - Graceful handling for missing input and API errors
 
 ## Project structure
@@ -44,7 +47,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Add your OpenAI key to `.env`:
+3. Copy the example environment file and add your OpenAI key:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env`:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
@@ -57,6 +66,8 @@ For `FLASK_SECRET_KEY`, use any long random string. A good way to generate one i
 ```bash
 python3 -c "import secrets; print(secrets.token_hex(32))"
 ```
+
+`.env` is ignored by git, so your real API key should not be committed as long as you keep it there.
 
 ## Run the app
 
@@ -81,11 +92,28 @@ http://127.0.0.1:5000
   - warn on urgent symptoms
   - handle vague input gently
 
+## Mood check-in design
+
+- The mood check-in lives on the same page as the main chat.
+- It saves the latest check-in and a short recent history in browser `localStorage`.
+- No user accounts, no database, and no server-side mood storage are required.
+- The user can save a check-in, view a small local summary, and send that context into the chat.
+
 ## Troubleshooting
 
 - If `from dotenv import load_dotenv` is marked as an error in your editor, the editor is probably using the wrong Python interpreter. Switch it to `.venv/bin/python`.
 - If the API responds with a quota, billing, or rate-limit error, the API project tied to your key may not have billing enabled yet.
 - If you change `.env`, restart the Flask server so the latest values are loaded.
+- If `pip install -r requirements.txt` fails with a broken or missing `pip` module, recreate the virtual environment:
+
+```bash
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m ensurepip --upgrade
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+```
 
 ## Important safety note
 
