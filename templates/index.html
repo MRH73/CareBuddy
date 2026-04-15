@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareBuddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">CareBuddy</p>
+          <h1>A calm first step for symptoms, stress, and wellness check-ins.</h1>
+          <p class="hero-text">
+            Share what is going on, and CareBuddy will ask follow-up questions before
+            offering general guidance. It is designed to be supportive, careful, and clear.
+          </p>
+        </div>
+
+        <aside class="disclaimer-panel">
+          <h2>Important disclaimer</h2>
+          <p>{{ disclaimer }}</p>
+        </aside>
+      </section>
+
+      <section class="chat-layout">
+        <div class="chat-panel">
+          <div class="chat-header">
+            <div>
+              <p class="section-label">Wellness chat</p>
+              <h2>Tell CareBuddy what you’re feeling.</h2>
+            </div>
+            <button id="resetButton" class="ghost-button" type="button">New chat</button>
+          </div>
+
+          <div id="statusBanner" class="status-banner" aria-live="polite">
+            CareBuddy will ask about your symptoms before giving guidance.
+          </div>
+
+          <div id="chatMessages" class="chat-messages" aria-live="polite">
+            <article class="message assistant">
+              <p>
+                Hi, I’m CareBuddy. Tell me what symptoms or feelings you’ve noticed,
+                when they started, and how intense they feel right now.
+              </p>
+            </article>
+          </div>
+
+          <form id="chatForm" class="chat-form">
+            <label class="sr-only" for="messageInput">Describe your symptoms</label>
+            <textarea
+              id="messageInput"
+              name="message"
+              rows="4"
+              maxlength="1200"
+              placeholder="Example: I’ve had a sore throat and low energy since yesterday, and I also feel anxious about it."
+            ></textarea>
+            <div class="form-row">
+              <p class="helper-text">
+                Avoid sharing highly sensitive personal information. If this feels urgent,
+                contact a medical professional now.
+              </p>
+              <button id="sendButton" class="primary-button" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="support-panel">
+          <div class="support-block">
+            <p class="section-label">What CareBuddy does</p>
+            <ul>
+              <li>Asks follow-up questions before suggesting next steps</li>
+              <li>Offers gentle wellness support and symptom check guidance</li>
+              <li>Flags urgent symptoms and points you to real help fast</li>
+            </ul>
+          </div>
+
+          <div class="support-block warning">
+            <p class="section-label">Get urgent help now if you have</p>
+            <ul>
+              <li>Chest pain or trouble breathing</li>
+              <li>Severe bleeding, fainting, or signs of overdose</li>
+              <li>Thoughts of suicide or harming yourself</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
