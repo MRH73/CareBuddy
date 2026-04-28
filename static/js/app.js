@@ -180,7 +180,7 @@ chatForm.addEventListener("submit", async (event) => {
 
   addMessage("user", message);
   messageInput.value = "";
-  setStatus("CareBuddy is reviewing your message carefully.");
+  setStatus("CareBuddy is deciding whether a brief follow-up question is needed.");
   showUrgentPanel(false);
   setLoading(true);
 
@@ -232,9 +232,9 @@ resetButton.addEventListener("click", async () => {
     chatMessages.innerHTML = "";
     addMessage(
       "assistant",
-      "New chat started. Tell me what symptoms or feelings you’ve noticed and when they began."
+      "New chat started. Tell me what is going on and what kind of help you need right now."
     );
-    setStatus("Conversation cleared. CareBuddy will ask follow-up questions first.");
+    setStatus("Conversation cleared. CareBuddy will ask brief questions only when needed.");
     showUrgentPanel(false);
   } catch (error) {
     setStatus("Could not reset the chat right now.", "error");
@@ -263,7 +263,7 @@ useMoodInChatButton.addEventListener("click", () => {
   }
 
   const data = JSON.parse(saved);
-  messageInput.value = `Mood check-in: ${buildMoodSummary(data)} Please use this as extra context while asking me follow-up questions before giving guidance.`;
+  messageInput.value = `Mood check-in: ${buildMoodSummary(data)} Please use this as extra context while giving me practical guidance and keeping follow-up questions brief.`;
   messageInput.focus();
   setStatus("Your mood check-in was added to the chat box.", "default");
 });

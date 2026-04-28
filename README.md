@@ -1,6 +1,6 @@
 # CareBuddy
 
-CareBuddy is a Flask-based wellness assistant with a soft, calm web interface. It offers general symptom and emotional wellness guidance, asks follow-up questions before giving suggestions, stores conversation context in the browser session, and shows strong medical disclaimers throughout the experience.
+CareBuddy is a Flask-based wellness assistant with a soft, calm web interface. It offers general symptom and emotional wellness guidance, gives practical next steps without over-questioning, stores conversation context in the browser session, and shows strong medical disclaimers throughout the experience.
 
 ## Features
 
@@ -86,8 +86,9 @@ http://127.0.0.1:5000
 - The backend uses the OpenAI Python SDK and the Responses API.
 - The default model in this starter is `gpt-4o-mini`, but you can change `OPENAI_MODEL` in `.env`.
 - The system prompt tells CareBuddy to:
-  - ask follow-up questions before giving guidance
-  - avoid diagnosis
+  - give practical general guidance in the same reply for most non-emergency cases
+  - avoid diagnosis or guessing the user's condition
+  - limit follow-up questions to only the most important ones
   - encourage medical or mental health professional support
   - warn on urgent symptoms
   - handle vague input gently
