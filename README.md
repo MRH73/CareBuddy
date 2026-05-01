@@ -83,7 +83,7 @@ http://127.0.0.1:5000
 
 ## How the AI is configured
 
-- The backend uses the OpenAI Python SDK and the Responses API.
+- The backend uses the OpenAI Python and the Responses API.
 - The default model in this starter is `gpt-4o-mini`, but you can change `OPENAI_MODEL` in `.env`.
 - The system prompt tells CareBuddy to:
   - give practical general guidance in the same reply for most non-emergency cases
@@ -100,21 +100,7 @@ http://127.0.0.1:5000
 - No user accounts, no database, and no server-side mood storage are required.
 - The user can save a check-in, view a small local summary, and send that context into the chat.
 
-## Troubleshooting
 
-- If `from dotenv import load_dotenv` is marked as an error in your editor, the editor is probably using the wrong Python interpreter. Switch it to `.venv/bin/python`.
-- If the API responds with a quota, billing, or rate-limit error, the API project tied to your key may not have billing enabled yet.
-- If you change `.env`, restart the Flask server so the latest values are loaded.
-- If `pip install -r requirements.txt` fails with a broken or missing `pip` module, recreate the virtual environment:
-
-```bash
-rm -rf .venv
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m ensurepip --upgrade
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
-```
 
 ## Important safety note
 

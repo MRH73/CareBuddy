@@ -6,7 +6,7 @@ const sendButton = document.getElementById("sendButton");
 const resetButton = document.getElementById("resetButton");
 const urgentPanel = document.getElementById("urgentPanel");
 const moodForm = document.getElementById("moodForm");
-const moodSelect = document.getElementById("moodSelect");
+const moodValue = document.getElementById("moodValue");
 const stressRange = document.getElementById("stressRange");
 const energyRange = document.getElementById("energyRange");
 const sleepSelect = document.getElementById("sleepSelect");
@@ -69,6 +69,7 @@ function updateMoodChips(value) {
   moodChips.forEach((chip) => {
     chip.classList.toggle("is-active", chip.dataset.mood === value);
   });
+  moodValue.value = value;
 }
 
 function formatMoodHeading(mood) {
@@ -130,13 +131,12 @@ function loadMoodCheck() {
 
   if (!saved) {
     moodSummary.textContent = "No check-in saved yet for this browser session.";
-    updateMoodChips(moodSelect.value);
+    updateMoodChips(moodValue.value);
     updateTodayCard(null);
     return;
   }
 
   const data = JSON.parse(saved);
-  moodSelect.value = data.mood;
   stressRange.value = data.stress;
   energyRange.value = data.energy;
   sleepSelect.value = data.sleep;
@@ -148,7 +148,7 @@ function loadMoodCheck() {
 
 function saveMoodCheck() {
   const data = {
-    mood: moodSelect.value,
+    mood: moodValue.value,
     stress: stressRange.value,
     energy: energyRange.value,
     sleep: sleepSelect.value,
@@ -250,7 +250,6 @@ moodForm.addEventListener("submit", (event) => {
 
 moodChips.forEach((chip) => {
   chip.addEventListener("click", () => {
-    moodSelect.value = chip.dataset.mood;
     updateMoodChips(chip.dataset.mood);
   });
 });
